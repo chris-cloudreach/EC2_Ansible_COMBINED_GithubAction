@@ -33,26 +33,26 @@ jobs:
         continue-on-error: true
 
       - name: Write terraform output to inventory.hosts file
-        id: write output
+        id: write_output
         run: terraform output | cut -d'"' -f 2 >> inventory.hosts 
         continue-on-error: true
 
       - name: Build inventory.hosts file
-        id: build inventory file
+        id: build_inventory_file
         run: echo "[webserver:vars]" >> inventory.hosts 
         continue-on-error: true
 
       - name: Continue building inventory.hosts file 
-        id: continue inventory file
+        id: continue_inventory_file
         run: echo 'ansible_user = "ubuntu"' >> inventory.hosts 
         continue-on-error: true
 
       - name: Continue2 building inventory.hosts file 
-        id: continue2 inventory file
+        id: continue2_inventory_file
         run: echo 'ansible_ssh_private_key_file = "~/.ssh/ta-lab-key.pem"' >> inventory.hosts 
         continue-on-error: true
 
       - name: Run playbook to configure nginx 
-        id: run playbook
+        id: run_playbook
         run: ansible-playbook playbook.yml 
         continue-on-error: true
