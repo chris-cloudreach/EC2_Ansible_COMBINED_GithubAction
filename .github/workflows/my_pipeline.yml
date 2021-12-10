@@ -32,6 +32,11 @@ jobs:
         run: terraform apply --auto-approve
         continue-on-error: true
 
+      - name: Start creating the inventory.hosts file
+        id: start_create
+        run: echo "[webserver]" > inventory.hosts
+        continue-on-error: true
+
       - name: Write terraform output to inventory.hosts file
         id: write_output
         run: terraform output | cut -d'"' -f 2 >> inventory.hosts 
