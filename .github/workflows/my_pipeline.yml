@@ -18,14 +18,14 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         #make sure u comment out the following lines of code
 
-      - name: Init
-        id: init
-        run: terraform init
+      # - name: Init
+      #   id: init
+      #   run: terraform init
 
-      - name: Plan
-        id: plan
-        run: terraform plan 
-        continue-on-error: true
+      # - name: Plan
+      #   id: plan
+      #   run: terraform plan 
+      #   continue-on-error: true
 
       - name: Apply
         id: apply
@@ -52,9 +52,13 @@ jobs:
 
       - name: Write terraform output to inventory.hosts file
         id: write_output
-        run: terraform output | cut -d'=' -f 2 >> ~/host/inventory.hosts
-        # run: terraform output >> ~/host/inventory.hosts 
+        # run: terraform output | cut -d'"' -f 2 >> ~/host/inventory.hosts
+        run: |
+          terraform output > ~/inventory.hosts
+          cat ~/host/inventory.hosts | cut -d'"' -f 2 >> ~/host/inventory.hosts
         continue-on-error: true
+
+      
 
       # - name: Build inventory.hosts file
       #   id: build_inventory_file
@@ -76,7 +80,7 @@ jobs:
         run: cat ~/host/inventory.hosts 
         continue-on-error: true
 
-      - name: Run playbook to configure nginx 
-        id: run_playbook
-        run: ansible-playbook -i ~/host/inventory.hosts playbook.yml 
-        continue-on-error: true
+      # - name: Run playbook to configure nginx 
+      #   id: run_playbook
+      #   run: ansible-playbook -i ~/host/inventory.hosts playbook.yml 
+      #   continue-on-error: true
