@@ -18,14 +18,14 @@ jobs:
         uses: hashicorp/setup-terraform@v1
         #make sure u comment out the following lines of code
 
-      # - name: Init
-      #   id: init
-      #   run: terraform init
+      - name: Init
+        id: init
+        run: terraform init
 
-      # - name: Plan
-      #   id: plan
-      #   run: terraform plan 
-      #   continue-on-error: true
+      - name: Plan
+        id: plan
+        run: terraform plan 
+        continue-on-error: true
 
       - name: Apply
         id: apply
