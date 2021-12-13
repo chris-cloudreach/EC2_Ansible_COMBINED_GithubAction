@@ -5,11 +5,11 @@ resource "aws_security_group" "my_app_sg" {
 
   # INBOUND RULES
   ingress {
-    description = "SSH from my mac"
+    description = "SSH from my mac and the world"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["86.15.241.215/32"]
+    cidr_blocks = ["86.15.241.215/32", "0.0.0.0/0"]
   }
 
   ingress {

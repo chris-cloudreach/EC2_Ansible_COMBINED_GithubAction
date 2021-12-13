@@ -67,7 +67,7 @@ jobs:
 
       - name: Continue2 building inventory.hosts file 
         id: continue2_inventory_file
-        run: echo 'ansible_ssh_private_key_file = "~/.ssh/ta-lab-key.pem"' >> inventory.hosts 
+        run: echo 'ansible_ssh_private_key_file = "~/.ssh/ta-lab-key.pem"' >> ~/inventory.hosts 
         continue-on-error: true
 
       - name: Run playbook to configure nginx 
