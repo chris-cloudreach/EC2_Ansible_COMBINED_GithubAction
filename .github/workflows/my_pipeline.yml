@@ -50,10 +50,10 @@ jobs:
           echo "[webserver]" > ~/host/inventory.hosts        
         continue-on-error: true
 
-      # - name: Write terraform output to inventory.hosts file
-      #   id: write_output
-      #   run: terraform output | cut -d'"' -f 2 >> ~/host/inventory.hosts 
-      #   continue-on-error: true
+      - name: Write terraform output to inventory.hosts file
+        id: write_output
+        run: terraform output | cut -d'"' -f 2 >> ~/host/inventory.hosts 
+        continue-on-error: true
 
       # - name: Build inventory.hosts file
       #   id: build_inventory_file
