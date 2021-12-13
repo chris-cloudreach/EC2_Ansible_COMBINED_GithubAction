@@ -56,7 +56,7 @@ jobs:
         run: |
           terraform output > ~/inventory.hosts
           cat ~/inventory.hosts | cut -d'"' -f 2 >> ~/host/inventory.hosts
-          cat ~/host/inventory.hosts | cut -d't' -f 2 >> ~/host/inventory.hosts
+          cat ~/host/inventory.hosts | cut -d'output' -f 2 > ~/host/inventory.hosts
         continue-on-error: true
 
       
