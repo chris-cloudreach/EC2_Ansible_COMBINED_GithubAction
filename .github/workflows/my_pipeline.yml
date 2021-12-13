@@ -16,7 +16,7 @@ jobs:
 
       - name: Terraform setup
         uses: hashicorp/setup-terraform@v1
-        #make sure u comment out the following lines of code
+        
 
       - name: Init
         id: init
@@ -32,10 +32,7 @@ jobs:
         run: terraform apply --auto-approve
         continue-on-error: true
 
-      # - name: Destroy
-      #   id: destroy
-      #   run: terraform destroy --auto-approve
-      #   continue-on-error: true
+      
 
       - name: Echo private key to a file
         run: |
@@ -55,10 +52,6 @@ jobs:
         run: |
           terraform output | cut -d'"' -f 2 > ~/inventory.hosts
           sed -n '4p' ~/inventory.hosts >> ~/host/inventory.hosts
-        # run: |
-        #   terraform output > ~/inventory.hosts
-        #   cat ~/inventory.hosts | cut -d'"' -f 2 >> ~/host/inventory.hosts
-        #   cat ~/host/inventory.hosts | cut -d'output' -f 2 > ~/host/inventory.hosts
         continue-on-error: true
 
       
@@ -85,6 +78,10 @@ jobs:
 
       - name: Run playbook to configure nginx 
         id: run_playbook
-        # run: ansible-playbook -i ~/host/inventory.hosts playbook.yml
         run: ansible-playbook playbook.yml 
         continue-on-error: true
+
+      # - name: Destroy
+      #   id: destroy
+      #   run: terraform destroy --auto-approve
+      #   continue-on-error: true
