@@ -70,6 +70,11 @@ jobs:
         run: echo 'ansible_ssh_private_key_file = "~/.ssh/ta-lab-key.pem"' >> ~/inventory.hosts 
         continue-on-error: true
 
+      - name: Print out inventory.hosts file 
+        id: print
+        run: cat ~/inventory.hosts 
+        continue-on-error: true
+
       - name: Run playbook to configure nginx 
         id: run_playbook
         run: ansible-playbook playbook.yml 
