@@ -52,8 +52,8 @@ jobs:
 
       - name: Write terraform output to inventory.hosts file
         id: write_output
-        # run: terraform output | cut -d'"' -f 2 >> ~/host/inventory.hosts
-        run: terraform output >> ~/host/inventory.hosts 
+        run: terraform output | cut -d'=' -f 2 >> ~/host/inventory.hosts
+        # run: terraform output >> ~/host/inventory.hosts 
         continue-on-error: true
 
       # - name: Build inventory.hosts file
